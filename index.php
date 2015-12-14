@@ -46,16 +46,36 @@ class App {
 		$this->publicKey = getenv('MAILGUN_PUBLIC_KEY');
 		$this->privateKey = getenv('MAILGUN_PRIVATE_KEY');
 
+		$error = false;
+
+		if(!$this->publicKey) {
+			$error = true;
+		}
+
+		if(!$this->privateKey) {
+			$error = true;
+		}
+		
 		if(isset($_POST['domain'])) {
 			$this->domain = $_POST['domain'];
+		} else {
+			$error = true;
 		}
 
 		if(isset($_POST['mailingList'])) {
 			$this->mailingList = $_POST['mailingList'];
+		} else {
+			$error = true;
 		}
 
 		if(isset($_POST['recipientAddress'])) {
 			$this->recipientAddress = $_POST['recipientAddress'];
+		} else {
+			$error = true;
+		}
+
+		if($error) {
+			die('Config not properly set');
 		}
 	}
 
