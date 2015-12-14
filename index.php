@@ -76,6 +76,8 @@ class App {
 
 		$error = false;
 
+		$params = json_decode(file_get_contents('php://input'),true);
+
 		if(!$this->publicKey) {
 			$error = true;
 		}
@@ -84,22 +86,22 @@ class App {
 			$error = true;
 		}
 
-		if(isset($_POST['domain'])) {
-			$this->domain = $_POST['domain'];
+		if(isset($params['domain'])) {
+			$this->domain = $params['domain'];
 		} else {
-			$error = true;
+			die('No Domain Set');
 		}
 
-		if(isset($_POST['mailingList'])) {
-			$this->mailingList = $_POST['mailingList'];
+		if(isset($params['mailingList'])) {
+			$this->mailingList = $params['mailingList'];
 		} else {
-			$error = true;
+			die('No mailingList Set');
 		}
 
-		if(isset($_POST['recipientAddress'])) {
-			$this->recipientAddress = $_POST['recipientAddress'];
+		if(isset($params['recipientAddress'])) {
+			$this->recipientAddress = $params['recipientAddress'];
 		} else {
-			$error = true;
+			die('No recipientAddress Set');
 		}
 
 		if($error) {
