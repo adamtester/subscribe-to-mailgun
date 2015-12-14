@@ -1,0 +1,12 @@
+{
+    "name": "adamtester/subscribe-to-mailgun",
+    "authors": [
+        {
+            "name": "Adam Tester",
+            "email": "adam@genyx.co.uk"
+        }
+    ],
+    "require": {
+        "mailgun/mailgun-php": "~1.7.2"
+    }
+}
